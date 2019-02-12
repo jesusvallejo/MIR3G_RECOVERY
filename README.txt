@@ -193,7 +193,7 @@ https://breed.hackpascal.net/breed-mt7621-xiaomi-r3g.bin
 
 4. way launcher does not work
 
-windows may have flashed it as a virus, it is not and if you want you can check it at https://github.com/littlebalup/WAY-launchers and compile it your self
+windows may have flagged it as a virus, it is not and if you want you can check it at https://github.com/littlebalup/WAY-launchers and compile it your self
 
 
 
