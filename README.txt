@@ -59,7 +59,7 @@ Now that you've been warned, KEEP READING CLOSELY, this method will replace the 
 this method involves some risks i'll enumerate:
 
 1. Nand flash is susceptible of having bad sectors(most likely it will have bad sectors), this means that 
-the provided image does not suit your nand(this will be addresed in this tutorial a bit forward).
+the provided image could not suit your nand(this will be addresed in this tutorial a bit forward).
 2. This method requires some soldering skills as well as soldering equipment to remove the Nand flash chip 
 from the board(another method is provided but never tried)
 
