@@ -9,6 +9,12 @@ THIS METHOD WILL ONLY WORK ON MI ROUTER 3G (ONLY GIGABIT VERSION , DONT FLASH TH
 -------------------------------------------------------------------------------------------------
 
 
+This method would not be possible without NORway project
+https://github.com/hjudges/NORway
+This made possible to dump the full.bin and to flash the bricked one
+Some parts of this guide are owned by hjudges.
+Also special thanks to WAY-launchers,for making it easier
+https://github.com/littlebalup/WAY-launchers
 
 Software required:
 -linux, mac, windows(recommended)
@@ -21,13 +27,21 @@ Software required:
 
 -WAY-LAUNCHER(only for windows, recommended)
 
+-Prerequisites for Windows:
+	Python 2.7.2 (http://www.python.org/ftp/python/2.7.2/python-2.7.2.msi)
+	pyserial 2.5 (http://pypi.python.org/packages/any/p/pyserial/pyserial-2.5.win32.exe)
+
 
 Hardware required:
 
 -teensy++ 2.0 (6$ aliexpress , ebay , etc)
+	¡¡¡¡3.3v is required so be sure to use the voltage regulator , cut the 5v trace and bridge 3.3 pad!!!!!!
+	
 -tsop48 adapter(10$ ebay)
 -mi router 3g 
 -solder iron , tin , flux
+-jumpers or wire to connect teensy and tsop48 adapter
+
 /////////////////////////////////////////////////
 
 for ease you could buy a solderless tsop adapter
@@ -60,43 +74,58 @@ if you have no bootloader , youll have to desolder the nand flash(nandflash.img 
 are free an there are no solder bridges anywhere.Once you have got a good looking nand flash you can keep reading 
 on flashing section.
 
+
+
+Flashing a nand is complicated, nands in contrary to nors have bad sectors, this is why
+a 128mb nand is in reality 138 mb , this difference makes possible to address those bad sectors
+to a working one, this is done by the bootloader,this means that there are two memory addreses
+one physical and on virtual, if the bootloader in full.bin has a physical address that is bad
+in your nand it may not work, this could be addressed by NORway , dont know if it already does, and
+jump those bad sectors.this means there is a posibility of not proper recovery, then you should buy
+a new nand of the same size.
+
 WARNING, removing tsop48 packages(nand flash format) is no joke and ripping pads is pretty easy, 
-be gentle when raising the chip from the mobo, also be careful to not overheat the pads, it is recommended using an
+be gentle when raising the chip from the pcb, also be careful to not overheat the pads, it is recommended using an
 airsoldering station, if not avaible a soldering iron , enough tin wire, flux is also recommended, this is the original
 method: add a lot , i mean a lot , of tin to cover all pins , keep an eye on heat , on both pin sites.
 when all pins are covered , heat one side from pin1 to pin 24 , up down , up down , when the solder is flowing,raise it ,
-yes dont pull , raise it with a razor being careful not to damage the mobo traces, when a side is in the air, then
+yes dont pull , raise it with a razor being careful not to damage the pcb traces, when a side is in the air, then
 heat the site that is still attached to the pcb and grabity will do the rest. now you have a mess, check that no pads 
 have been ripped of, clean the pads on the pcb preparing it for after the flashing.now clean all pins in the nand flash
 there cant be any bridges.
 
-if this looks pretty difficult, mate you are a lucky boy , there are adapaters (originally used for ps3 and xbox360)
-for tsop48 that require no desolering, but they are not cheap.(360-Clip, solderless IC adapter, 48-pin, TSOP48)
+if this looks pretty difficult, mate you are a lucky boy , there are adapters (originally used for ps3 and xbox360)
+for tsop48 that require no desoldering, but they are not cheap.(360-Clip, solderless IC adapter, 48-pin, TSOP48)
+
+the used enviroment will be easyWAY directory, the tools one is only for reference and includes more files than the needed
+
 
 Now that we have the nand ready, we will prepare the hardware
 
 1. Flash Teensy with "NORway\teensyNAND\default\NANDway.hex" (you can do it the factory's way)
 	- Rename NANDway.hex to NANDWay_SignalBoosterEdition.hex
 	- Run WAY-launcher.exe
-	- Click on nand , click on the teensy drawing, select NANDWay_SignalBoosterEdition.hex, when displayed by the console press the ony button on the teensy
+	- Click on nand , click on the teensy picture, select NANDWay_SignalBoosterEdition.hex, when displayed by the console press the ony button on the teensy
 
 
-2. Wiring the adapter(follow provided pictures)
+2. Wiring the adapter(follow provided wiring picture)
 
 
 
 	NAND Hardware connections:
-		NAND		Teensy - nand0  	
+		NAND		Teensy 	
 	*	IO0-7		PF0-7				
 	7	RY/BY#		PB6			
-	8	RE#		PB1			
-	9	CE#		PB0		
-	12	Vcc		3.3v - Vcc		
-	13	GND		GND		
-	16	CLE		PB2		
-	17	ALE		PB3			
-	18	WE#		PB5			
-	19	WP#		PB4			
+	8	RE#			PB1			
+	9	CE#			PB0		
+	12	Vcc			3.3v - Vcc		
+	13	GND			GND		
+	16	CLE			PB2		
+	17	ALE			PB3			
+	18	WE#			PB5			
+	19	WP#			PB4		
+
+	
 
 
 3. Flash fullNandClone
@@ -145,10 +174,8 @@ also i dont know if miwifi app will let you use it like that as is a clone of mi
 
 3.where can i find everything
 
-zip file with all you will need
-https://drive.google.com/file/d/1gxrpdBFp9ft170d08P67Qi6DxgKEoUdW/view?usp=sharing
 
-other sites you can find the files
+
 
 https://github.com/hjudges/NORway (master has images of wiring, release 0.7 nandway.hex for the teensy)
 
