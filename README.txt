@@ -7,7 +7,7 @@
 THIS METHOD WILL ONLY WORK ON MI ROUTER 3G (ONLY GIGABIT VERSION , DONT FLASH THIS IN MI ROUTER 3)
 
 -------------------------------------------------------------------------------------------------
-
+Files in release!!!
 
 This method would not be possible without NORway project
 https://github.com/hjudges/NORway
